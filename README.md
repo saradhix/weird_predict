@@ -10,6 +10,6 @@ Only weird news items are stored in output.json
 
 Comments and suggestions can be mailed to saradhix@yahoo.com.
 
-##Getting started ##
+## Getting started ##
 python weird_predict.py sample.json
 cat output.json
