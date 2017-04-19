@@ -1,0 +1,7 @@
+sudo pip install spacy
+sudo python -m spacy.en.download all
+sudo pip install nltk
+sudo python -m nltk.downloader -d /usr/local/share/nltk_data all
+sudo pip install sklearn
+sudo pip install  keras
+sudo pip install xgboost
