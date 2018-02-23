@@ -26,12 +26,12 @@ var pie = new d3pie("pieChart", {
 			{
 				"label": "Bizarre",
 				"value": <?php echo $bizarre;?>,
-				"color": "#697e38"
+				"color": "#ff0000"
 			},
 			{
 				"label": "Normal",
 				"value": <?php echo $normal;?>,
-				"color": "#7e3838"
+				"color": "#679b08"
 			}
 		]
 	},
@@ -64,7 +64,7 @@ var pie = new d3pie("pieChart", {
 	},
 	"effects": {
 		"load": {
-			"speed": 2000
+			"speed": 1000
 		},
 		"pullOutSegmentOnClick": {
 			"effect": "linear",
