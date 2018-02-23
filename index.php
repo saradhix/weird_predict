@@ -25,13 +25,13 @@
 <!-- Google Tag Manager -->
 </head>
 <body ng-controller="dnsCtrl" ng-cloak>
-<div class="border-box" role="main">
+<div class="border-box" role="main" style="width:auto">
 <!-- Start main-panel -->
 <section class="white-bg main-panel">
 <h2 class="main-panel-title">Bizarre News Identification</h2>
 <form method="GET" action="index.php" class="search-form" id="domain_search_form" style="margin: 0 auto 20px;">
 <div class="searchBoxForm">
-<input type="text" name="title" placeholder="Enter any news title" class="search-form-input" id="domain_search_input" autocomplete="off"  style="width:auto; border:none;outline:0;min-width: 500px;" />
+<input type="text" name="title" value="<?php echo @$_REQUEST['title'];?>" class="search-form-input" placeholder="Enter any news title" autocomplete="off"  style="width:auto; border:none;outline:0;min-width: 500px;" />
 <button type="submit" class="btn btn-primary btn-search-form submitbtn">Find</button>
 <div class="clearfix"></div>
 
@@ -43,18 +43,18 @@ if(isset($title))
 
 $id=md5(rand(1,10000));
 $json_obj=['id'=>$id,'title'=>$title];
-print_r($json_obj);
+#print_r($json_obj);
 $json_request = json_encode($json_obj,true);
 
 require("phpMQTT.php");
 
-$mqtt = new phpMQTT("localhost", 1883, "phpMQTT Pub Example");
+$mqtt = new phpMQTT("localhost", 1883, $id);
 //Change client name to something unique
 
 if ($mqtt->connect()) {
         $mqtt->publish("request",$json_request,0);
 }
-$topics['response'] = ["qos"=>0, "function"=>"myresponse"];
+$topics[$id] = ["qos"=>0, "function"=>"myresponse"];
 $mqtt->subscribe($topics,0);
 while($mqtt->proc())
 {
@@ -64,7 +64,7 @@ while($mqtt->proc())
 function myresponse($topic, $message)
 {
 #global $mqtt;
-echo "Entered myresponse with $topic, $message";
+#echo "Entered myresponse with $topic, $message";
 $bizarre=rand(1,70);
 $normal = 100-$bizarre;
 

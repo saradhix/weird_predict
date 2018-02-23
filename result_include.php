@@ -5,7 +5,7 @@
 var pie = new d3pie("pieChart", {
 	"header": {
 		"title": {
-			"text": "<?php echo $title;?>",
+			"text": "",
 			"fontSize": 22,
 			"font": "verdana"
 		}
