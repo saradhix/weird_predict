@@ -31,8 +31,8 @@
 <h2 class="main-panel-title">Bizarre News Identification</h2>
 <form method="GET" action="index.php" class="search-form" id="domain_search_form" style="margin: 0 auto 20px;">
 <div class="searchBoxForm">
-<input type="text" name="title" value="<?php echo @$_REQUEST['title'];?>" class="search-form-input" placeholder="Enter any news title" autocomplete="off"  style="width:auto; border:none;outline:0;min-width: 500px;" />
-<button type="submit" class="btn btn-primary btn-search-form submitbtn">Find</button>
+<input type="text" name="title" value="<?php echo @$_REQUEST['title'];?>" class="search-form-input" placeholder="Enter any news title" autocomplete="off"  style="width:900px; border:none;outline:0;min-width: 500px;" />
+<button type="submit" class="btn btn-primary btn-search-form submitbtn">Analyze</button>
 <div class="clearfix"></div>
 
 <?php
@@ -52,7 +52,8 @@ $mqtt = new phpMQTT("localhost", 1883, $id);
 //Change client name to something unique
 
 if ($mqtt->connect()) {
-        $mqtt->publish("request",$json_request,0);
+  $mqtt->publish("request",$json_request,0);
+  echo "<!--published-->";
 }
 $topics[$id] = ["qos"=>0, "function"=>"myresponse"];
 $mqtt->subscribe($topics,0);
